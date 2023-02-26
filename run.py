@@ -56,10 +56,10 @@ def plot(x):
         ax.set_ylabel('y')
         ax.set_zlabel('z')
         ax.set_title(title)
-        ax.view_init(10, 250 + 5)
+        ax.view_init(20, 250 + 5)
         ax.set_box_aspect([1, 1, 1])
         set_axes_equal(ax)
-    # plt.savefig('pca.pdf', bbox_inches='tight')
+    plt.savefig('pca.pdf', bbox_inches='tight')
     plt.show()
 
 def gen_data():
@@ -79,16 +79,16 @@ def center(x):
 
 def get_pcs_eigh(x):
     lamda, V = la.eigh(np.cov(x))
-    pc1 = V[-1, :] / la.norm(V[-1, :])
-    pc2 = V[-2, :] / la.norm(V[-2, :])
-    pc3 = V[-3, :] / la.norm(V[-3, :])
+    pc1 = V[:, -1] / la.norm(V[:, -1])
+    pc2 = V[:, -2] / la.norm(V[:, -2])
+    pc3 = V[:, -3] / la.norm(V[:, -3])
     return pc1, pc2, pc3
 
 def get_pcs_eig(x):
     lamda, V = la.eig(np.cov(x))
-    pc1 = V[0, :] / la.norm(V[0, :])
-    pc2 = V[1, :] / la.norm(V[1, :])
-    pc3 = V[2, :] / la.norm(V[2, :])
+    pc1 = V[:, 0] / la.norm(V[:, 0])
+    pc2 = V[:, 1] / la.norm(V[:, 1])
+    pc3 = V[:, 2] / la.norm(V[:, 2])
     return pc1, pc2, pc3
 
 def get_pcs_sk(x):
